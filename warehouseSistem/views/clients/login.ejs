@@ -1,0 +1,31 @@
+<%- include('../partials/header'); %>
+<%- include("../partials/navbar.ejs"); %>
+<div class="container col-11 col-md-10">
+    <div class="row align-items-center text-center mb-5">
+        <h1>LOGIN</h1>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-md-6 order-md-2">
+            <h3>Parece que ainda não está loggado.</h3>
+            <p class="mt-2">Preencha as informações a seguir para continuar</p>
+            <form action="/authenticate" method="post" class="form">
+                <div class="form-floating mb-2">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Digite um e-mail válido">
+                    <label for="email" class="form-label" value="<%= registeredEmail || '' %>">Seu email</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua password">
+                    <label for="password" class="form-label">Sua senha</label>
+                </div>
+                <input type="submit" value="Entrar" class="btn btn-primary btn-lg form-control">
+                <div class="text-center mt-2">
+                    <a href="/register">Ainda não possuo cadastro</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="/imgs/login.svg" alt="new entries" class="img-fluid">
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer'); %>

@@ -1,0 +1,27 @@
+<%- include("../partials/header.ejs"); %>
+<%- include("../partials/navbar.ejs"); %>
+<div class="container col-11 col-md-10 mt-2 rounded" id="form-container">
+    <div class="row align-items-center gx-5">
+        <div class="col-md-6 order-md-2">
+            <h2>Novo Produto</h2>
+            <!-- Inputs -->
+            <!-- form-control ; form-label -->
+            <form action="/product/<%=idParent%>" method="post">
+                <div class="form-floating mb-2">
+                    <input type="text" name="title" id="title" class="form-control" placeholder="Descrição do produto" required>
+                    <label for="title" class="form-label">Descrição Do Produto <span style="color:rgb(122, 0, 0)">*</span></label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="text" name="price" id="price" placeholder="R$24,85" class="form-control" required>
+                    <label for="price" class="form-label">Preço (R$)<span style="color:rgb(122, 0, 0)">*</span></label>
+                </div>
+                <input type="submit" value="Criar" class="btn btn-primary">
+                <a href="/purchase/<%=idParent%>" class="btn btn-dark">Voltar ao pedido</a>
+            </form>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="/imgs/new_entries.svg" alt="Adicionando produtos" class="img-fluid">
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer.ejs"); %>

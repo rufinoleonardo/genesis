@@ -1,0 +1,45 @@
+<%- include('../partials/header'); %>
+<%- include('../partials/navbar'); %>
+<div class="container col-11 col-md-10">
+    <div class="row align-items-center text-center mb-5">
+        <h1>REGISTER</h1>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-md-6 order-md-2">
+            <h3>Faça agora o seu registro</h3>
+            <form action="/register" method="post" class="mt-3">
+                <div class="form-floating mb-2">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Digite um e-mail válido">
+                    <label for="email" class="form-label">Seu email</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="text" name="document" id="document" class="form-control" placeholder="Digite seu document">
+                    <label for="document" class="form-label">Seu documento</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua password">
+                            <label for="password" class="form-label">Sua password</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" placeholder="Digite sua password">
+                            <label for="confirmpassword" class="form-label">Confirme sua password</label>
+                        </div>
+                    </div>
+        
+                </div>
+                <input type="submit" value="Cadastrar" class="btn btn-primary btn-lg form-control">
+                <div class="text-center mt-2">
+                    <a href="/login">Já possuo cadastro</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="/imgs/add_user.svg" alt="new entries" class="img-fluid">
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer'); %>

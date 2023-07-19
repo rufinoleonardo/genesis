@@ -1,0 +1,93 @@
+<%- include('../partials/header.ejs'); %>
+<%- include('../partials/navbar.ejs'); %>
+
+<div class="container col-11 col-md-10">
+    <div class="card row purchase-container">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h2>[<%= purchase.status %>] COMPRA <%= purchase.id %>: <%= purchase.title %></h2>
+                </div>
+                
+            </div>
+        </div>
+        <div class="card-body product-details">
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- Inputs -->
+                    <!-- form-control ; form-label -->
+                    <h4>Adicionar items</h4>
+                    <form action="/insertPurchaseProduct" method="post">
+                        <div class="form-floating mb-2">
+                            <select name="selection" id="selection" class="form-select form-select-lg">
+                                <% products.forEach(el => { %>
+                                    <option value="<%=el.id%>"><%= el.title %></option>
+                                <% }) %>
+                            </select>
+                            <label for="selection" class="form-label">Descrição Do Produto</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="number" name="amount" id="amount" class="form-control" placeholder="9" min="1">
+                            <label for="amount" class="form-label">Quantidade<span style="color:rgb(122, 0, 0)">*</span></label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" name="price" id="price" placeholder="R$24,85" class="form-control">
+                            <label for="price" class="form-label">Preço (R$)<span style="color:rgb(122, 0, 0)">*</span></label>
+                        </div>
+                        <input type="hidden" name="purchasevalue" value="<%= purchase.id %>">
+                        <input type="submit" value="Adicionar ao Pedido" class="btn btn-dark form-control">
+                        <a href= "/newProduct/<%= purchase.id %>" class="btn btn-secondary form-control mt-1">Novo Produto</a>
+                    </form>
+                </div>
+                <div class="col-md-8">
+                    <h4>PRODUTOS DA COMPRA</h4>
+                    <div class="table-container">
+                        <table class="table table-striped table-hover table-responsive align-middle text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-start">Produto</th>
+                                    <th>Qtd</th>
+                                    <th>Preço</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% formatedPurchaseP.forEach( purchaseProduct => { %>
+                                    <tr>
+                                        <td class="text-start text-wrap"><%= purchaseProduct.title %></td>
+                                        <td><%= purchaseProduct.amount %></td>
+                                        <td><%= purchaseProduct.price %></td>
+                                        <td><%= purchaseProduct.total %></td>
+                                        <td><a onclick="confirmation(<%= purchase.id %>, <%= purchaseProduct.id %>)" class="btn btn-primary">Remover</a></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <div class="h3">TOTAL: <%=formatedTotal%></div>
+        </div>
+        <div class="col">
+            <a href="/completePurchase/<%= purchase.id %>" class="btn btn-success form-control">Efetivar compra</a>
+        </div>
+        <div class="col">
+            <a href="/cancelPurchase/<%= purchase.id %>" class="btn btn-outline-danger form-control">Cancelar Compra</a>
+        </div>
+    </div>
+</div>
+<script>
+    function confirmation(idPurchase, id){
+        let confirmation = confirm("Deseja realmente remover o produto da Compra atual?")
+
+        if(confirmation){
+            document.location = `/deletePurchaseProduct/${idPurchase}/${id}`
+        }
+    }
+</script>
+<%- include('../partials/footer.ejs'); %>

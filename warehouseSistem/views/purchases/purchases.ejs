@@ -1,0 +1,60 @@
+<%- include('../partials/header.ejs'); %>
+<%- include('../partials/navbar.ejs'); %>
+       
+    <div class="container col-11 col-md-10 view-container rounded">
+            <h2>Compras</h2>
+            <div class="row align-items-center mt-5">
+                <form action="/purchase" method="post" class="row align-items-center justify-content-center">
+                    <div class="col-md-8">
+                        <div class="form-floating">
+                            <input type="text" name="title" id="title" class="form-control" placeholder="Descrição Da Compra">
+                            <label for="title" class="form-label">Descrição Da Compra <span style="color:rgb(122, 0, 0)">*</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 align-self-end">
+                        <button class="btn btn-dark btn-lg w-100" id="btnNovaCompra" type="submit">Nova compra</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row align-items-center justify-content-center mt-5" id="purchasesTable">
+                <div class="col-11">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descrição</th>
+                                <th>Status da Compra</th>
+                                <th>Data</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <% purchases.forEach(purchase=> { %>
+                                <tr>
+                                    <td>
+                                        <%= purchase?.id %>
+                                    </td>
+                                    <td>
+                                        <%= purchase?.title %>
+                                    </td>
+                                    <td>
+                                        <%= purchase?.status %>
+                                    </td>
+                                    <td>
+                                        <%= purchase?.updatedAt %>
+                                    </td>
+                                    <% if(purchase.status == "pendente") { %>
+                                        <td><a href="/editpurchase/<%= purchase.id %>" class="btn btn-primary">Editar</a></td>
+                                    <% } else {%>
+                                        <td><a href="/visualizePurchase/<%= purchase.id %>" class="btn btn-secondary">Visualizar</a></td>
+                                    <% } %>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+<%- include('../partials/footer.ejs'); %>

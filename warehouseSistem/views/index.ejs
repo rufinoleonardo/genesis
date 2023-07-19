@@ -1,0 +1,43 @@
+<%- include("partials/header.ejs"); %>
+<%- include("partials/navbar.ejs"); %>
+<div class="container col-11 col-md-10 mt-2 view-container rounded">
+    <div class="row align-items-center gx-4">
+        <div class="col-12">
+            <h2>Meus produtos</h2>
+
+            <table class="table table-hover mt-5" id="productsTable">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Produto</th>
+                        <th class="text-end">Preço</th>
+                        <th class="text-end">Quantidade</th>
+                        <th class="text-center">Ação</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <% products.forEach( product => { %>
+                        <tr>
+                            <td><%=product.id%></td>
+                            <td><%=product.title%></td>
+                            <td class="text-end"><%=(product.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) %></td>
+                            <td class="text-end"> - </td>
+                        <td class="text-center"><a onclick="confirmation(<%=product.id%>)" class="btn btn-warning">DESTRUIR Produto</a></td>
+                        </tr>
+                    <% }) %>
+                    <!-- <tr><td></td></tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function confirmation(id){
+        let confirmation = confirm("Deseja...?");
+        console.log(id)
+        if(confirmation){
+            document.location = `/deletingProduct/${id}`
+        }
+    }
+</script>
+<%- include("partials/footer.ejs"); %>
