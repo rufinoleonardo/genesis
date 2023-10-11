@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Sorter_1 = require("./Sorter");
+// import { NumbersCollection } from "./NumbersCollection";
+const CharCollection_1 = require("./CharCollection");
+// const nCollection = new NumbersCollection([4, 6, 5, 2, 8, -20]);
+// const sorter = new Sorter(nCollection);
+const charCollection = new CharCollection_1.CharCollection("LeoNardO");
+const sorter = new Sorter_1.Sorter(charCollection);
+sorter.sort();
+console.log(sorter.collection);
