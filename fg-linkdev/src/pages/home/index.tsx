@@ -10,6 +10,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 interface LinksProps {
   id: string;
@@ -84,7 +85,15 @@ export const Home: React.FC = () => {
       <h1 className="md:text-4xl text-3xl font-bold text-white mt-20">
         It's not you... IT'S ME
       </h1>
-      <span className="text-gray-50 mb-5 my-3">Veja meus links</span>
+
+      <Link
+        to="/admin"
+        className="my-3 bg-gray-700 h-9 text-white font-medium gap-4 flex items-center py-2 px-8"
+      >
+        Admin Page
+      </Link>
+
+      <span className="text-gray-50 mb-5 mt-3">Veja meus links</span>
 
       <main className="flex flex-col w-11/12 max-w-xl text-center">
         {links.length > 0 &&
