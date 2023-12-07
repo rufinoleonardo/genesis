@@ -1,7 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { FormEvent, useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserSessionPersistence,
+} from "firebase/auth";
 import { auth } from "../../services/firebaseConnection";
 
 export const Login: React.FC = () => {
@@ -17,14 +21,20 @@ export const Login: React.FC = () => {
       return;
     }
 
-    signInWithEmailAndPassword(auth, email, password)
+    setPersistence(auth, browserSessionPersistence)
       .then(() => {
-        console.log("LOGGADO");
-        navigate("/admin");
+        signInWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            console.log("LOGGADO");
+            navigate("/admin");
+          })
+          .catch((error) => {
+            console.log("Erro ao fazer o login.");
+            console.log(error);
+          });
       })
-      .catch((error) => {
-        console.log("Erro ao fazer o login.");
-        console.log(error);
+      .catch((err) => {
+        console.log("ERRO AO SETTAR PERSISTENCIA.", err);
       });
   };
 
