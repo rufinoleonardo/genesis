@@ -21,6 +21,8 @@ interface LinkProps {
   color: string;
 }
 
+const linkReg = new RegExp("http.+|mailto.+", "gim");
+
 export const Admin: React.FC = () => {
   const [nameInput, setNameInput] = useState("");
   const [urlInput, setUrlInput] = useState("");
@@ -58,21 +60,29 @@ export const Admin: React.FC = () => {
     e.preventDefault();
 
     if (nameInput !== "" && urlInput !== "") {
-      addDoc(collection(db, "links"), {
-        name: nameInput,
-        url: urlInput,
-        background: backgroundInput,
-        color: colorInput,
-        created: new Date(),
-      })
-        .then(() => {
-          setNameInput("");
-          setUrlInput("");
-          console.log(`${nameInput} CADASTRADO COM SUCESSO.`);
+      if (urlInput.match(linkReg)) {
+        console.log("Link Validado REGEX");
+        console.log(urlInput.match(linkReg));
+
+        addDoc(collection(db, "links"), {
+          name: nameInput,
+          url: urlInput,
+          background: backgroundInput,
+          color: colorInput,
+          created: new Date(),
         })
-        .catch((error) => {
-          console.log("ERRO AO CADASTRAR.", error);
-        });
+          .then(() => {
+            setNameInput("");
+            setUrlInput("");
+            console.log(`${nameInput} CADASTRADO COM SUCESSO.`);
+          })
+          .catch((error) => {
+            console.log("ERRO AO CADASTRAR.", error);
+          });
+      } else {
+        console.log("Não passou no REGEX");
+        alert("Link invalido. Links devem ser iniciados com http ou mailto");
+      }
     } else {
       alert("Nome do link e a URL são campos obrigatórios.");
       return;
