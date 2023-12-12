@@ -1,1 +1,19 @@
 node_modules
+
+#OTHERS PROJECT FOLDERS
+bb-webScrapping/
+bduvidas-api/
+dev-frases/
+fg-cripto/
+fg-primeiro/
+fg-router/
+react-typing/
+redux-ts/
+sesiWebScrapper/
+typescript/api-rest.md
+webpack/
+solid-ts01/
+ts-framework/
+ts_api-bduvidas/
+ws-consorcios/
+fg-context/
