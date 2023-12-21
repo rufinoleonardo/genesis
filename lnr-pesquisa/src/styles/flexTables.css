@@ -1,0 +1,121 @@
+/* ! FLEX TABLE */
+
+.l-tableContainer::-webkit-scrollbar-track {
+  background-color: #cff1eb;
+}
+
+.l-tableContainer::-webkit-scrollbar {
+  width: 6px; /* Largura da barra de rolagem */
+}
+.l-tableContainer::-webkit-scrollbar-thumb {
+  background-color: #00747b;
+  border-radius: 5px;
+}
+
+.l-tableContainer {
+  width: 100%;
+  max-height: 70vh;
+  background-color: #ebfffb;
+  border-radius: 5px;
+
+  display: flex;
+  overflow-y: auto;
+
+  padding-bottom: 12px;
+  box-sizing: border-box;
+}
+
+.l-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+
+  font-size: 12px;
+}
+
+.l-table thead {
+  position: sticky;
+  top: 0;
+}
+
+.l-table tbody tr {
+  height: 30px;
+  transition: background-color 0.5s;
+}
+
+.l-table tbody td {
+  padding: 0 15px;
+}
+
+.l-table tbody tr:nth-child(even) {
+  background-color: #cff1eb8a;
+}
+
+.l-table tbody tr:hover {
+  background-color: #00747b;
+  color: #fff;
+}
+
+/* .l-table tbody tr td:not(:nth-child(2)) {
+  text-align: center;
+} */
+
+.l-flexTr {
+  font-size: 12px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.l-flexTd {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+}
+
+.l-flexTh {
+  padding: 0 10px;
+  height: 40px;
+
+  font-size: 10px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-wrap: wrap;
+
+  background-color: #003a47;
+  color: #93ffcb;
+}
+
+.l-flexTh:last-child {
+  margin-right: 4px;
+}
+
+.l-flex1 {
+  flex: 1;
+}
+
+.l-flex2 {
+  flex: 2;
+}
+
+.l-flex3 {
+  flex: 3;
+}
+
+.l-flex4 {
+  flex: 4;
+}
+
+.l-flex5 {
+  flex: 65;
+}
+
+.l-flex6 {
+  flex: 6;
+}
+
+.l-flex7 {
+  flex: 7;
+}
